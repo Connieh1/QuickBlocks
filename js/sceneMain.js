@@ -50,14 +50,23 @@ class SceneMain extends Phaser.Scene {
     this.timer = new CircleTimer({ scene: this });
     this.timer.x = this.centerBlock.x;
     this.timer.y = this.centerBlock.y;
+    this.timer.setCallback(this.timeUp, this);
+    this.timer.start();
+  }
+
+  timeUp() {
+    alert("time is up!");
   }
 
   selectBlock(pointer, block) {
     if (block.frame.name == this.centerBlock.frame.name) {
       block.removeInteractive();
       this.fall(block);
-      this;
+      this.pickColor();
+    } else {
+      console.log("wrong");
     }
+    this.timer.reset();
   }
 
   fall(block) {
