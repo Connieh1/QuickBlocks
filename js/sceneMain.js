@@ -13,7 +13,7 @@ class SceneMain extends Phaser.Scene {
     //define our objects
     this.colorArray = [];
     for (let i = 0; i < 25; i++) {
-      let color = Phaser.Math.Between(0, 7);
+      let color = Phaser.Math.Between(0, model.numberOfColors);
       this.colorArray.push(color);
       this.centerBlock = null;
     }
