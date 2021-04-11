@@ -77,6 +77,11 @@ class SceneMain extends Phaser.Scene {
     let color;
     if (this.colorArray.length == 0) {
       console.log("Next Level");
+      model.numberOfColors++;
+      if (model.numberOfColors > 7) {
+        model.numberOfColors = 7;
+      }
+      this.scene.restart();
       return;
     }
     color = this.colorArray.shift();
