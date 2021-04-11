@@ -15,6 +15,7 @@ class SceneMain extends Phaser.Scene {
     for (let i = 0; i < 25; i++) {
       let color = Phaser.Math.Between(0, 7);
       this.colorArray.push(color);
+      this.centerBlock = null;
     }
     let xx = 0;
     let yy = 0;
@@ -29,13 +30,25 @@ class SceneMain extends Phaser.Scene {
         block.setOrigin(0, 0);
         block.x = xx;
         block.y = yy;
+        if (i == 2 && j == 2) {
+          this.centerBlock = block;
+        }
         xx += block.displayWidth;
         count++;
       }
       xx = 0;
       yy += block.displayHeight;
     }
+    this.colorArray[12] = -1;
+
+    this.pickColor();
   }
+
+  pickColor() {
+    let color = this.colorArray.shift();
+    this.centerBlock.setFrame(color);
+  }
+
   update() {
     //constant running loop
   }
