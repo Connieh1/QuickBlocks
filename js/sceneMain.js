@@ -46,6 +46,10 @@ class SceneMain extends Phaser.Scene {
     this.pickColor();
 
     this.input.on("gameobjectdown", this.selectBlock, this);
+
+    this.timer = new CircleTimer({ scene: this });
+    this.timer.x = this.centerBlock.x;
+    this.timer.y = this.centerBlock.y;
   }
 
   selectBlock(pointer, block) {
