@@ -4,6 +4,10 @@ class SceneMain extends Phaser.Scene {
   }
   preload() {
     //load our images or sounds
+    this.load.spritesheet("blocks", "images/blocks.png", {
+      frameWidth: 63,
+      frameHeight: 84,
+    });
   }
   create() {
     //define our objects
