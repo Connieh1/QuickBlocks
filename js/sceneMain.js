@@ -10,7 +10,7 @@ class SceneMain extends Phaser.Scene {
     });
   }
   create() {
-    //define our objects
+    this.blockGroup = this.add.group();
     this.clickLock = false;
     this.colorArray = [];
     for (let i = 0; i < 25; i++) {
@@ -25,6 +25,7 @@ class SceneMain extends Phaser.Scene {
     for (let i = 0; i < 5; i++) {
       for (let j = 0; j < 5; j++) {
         block = this.add.image(0, 0, "blocks");
+        this.blockGroup.add(block);
         block.displayWidth = game.config.width / 5;
         block.displayHeight = game.config.height / 5;
         block.setFrame(this.colorArray[count]);
@@ -101,6 +102,11 @@ class SceneMain extends Phaser.Scene {
   doGameOver() {
     this.clickLock = true;
     this.timer.stop();
+    this.blockGroup.children.iterate(
+      function (child) {
+        this.fall(child);
+      }.bind(this)
+    );
   }
 
   update() {
