@@ -11,6 +11,7 @@ class SceneMain extends Phaser.Scene {
   }
   create() {
     //define our objects
+    this.clickLock = false;
     this.colorArray = [];
     for (let i = 0; i < 25; i++) {
       let color = Phaser.Math.Between(0, model.numberOfColors);
@@ -55,16 +56,21 @@ class SceneMain extends Phaser.Scene {
   }
 
   timeUp() {
-    alert("time is up!");
+    this.doGameOver();
   }
 
   selectBlock(pointer, block) {
+    if (this.clickLock == true) {
+      console.log("locked");
+      return;
+    }
     if (block.frame.name == this.centerBlock.frame.name) {
       block.removeInteractive();
       this.fall(block);
       this.pickColor();
     } else {
-      console.log("wrong");
+      this.doGameOver();
+      return;
     }
     this.timer.reset();
   }
@@ -90,6 +96,11 @@ class SceneMain extends Phaser.Scene {
       return;
     }
     this.centerBlock.setFrame(color);
+  }
+
+  doGameOver() {
+    this.clickLock = true;
+    this.timer.stop();
   }
 
   update() {
