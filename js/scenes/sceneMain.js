@@ -8,6 +8,7 @@ class SceneMain extends Phaser.Scene {
       frameWidth: 64,
       frameHeight: 84,
     });
+    this.load.image("btnPlayAgain", "images/btnPlayAgain.png");
   }
   create() {
     this.blockGroup = this.add.group();
@@ -107,6 +108,16 @@ class SceneMain extends Phaser.Scene {
         this.fall(child);
       }.bind(this)
     );
+    this.time.addEvent({
+      delay: 1200,
+      callback: this.doGameOver2,
+      callbackScope: this,
+      loop: false,
+    });
+  }
+
+  doGameOver2() {
+    this.scene.start("SceneOver");
   }
 
   update() {
