@@ -8,10 +8,12 @@
 $ npm install --save QuickBlocks
 ```
 
+Website: https://quickblocks.netlify.app/
+
 ## Usage
 
 ```js
-var quickblocks = require('QuickBlocks');
+var quickblocks = require("QuickBlocks");
 quickblocks();
 ```
 
