@@ -55,6 +55,13 @@ class SceneMain extends Phaser.Scene {
     this.timer.y = this.centerBlock.y;
     this.timer.setCallback(this.timeUp, this);
     this.timer.start();
+
+    this.scoreText = this.add.text(0, 0, "0", {
+      fontSize: game.config.width / 10,
+      color: "#000000",
+    });
+    this.scoreText.setOrigin(0.5, 0.5);
+    Align.center(this.scoreText);
   }
 
   timeUp() {
@@ -70,6 +77,8 @@ class SceneMain extends Phaser.Scene {
       block.removeInteractive();
       this.fall(block);
       this.pickColor();
+      model.score++;
+      this.scoreText.setText(model.score);
     } else {
       this.doGameOver();
       return;
