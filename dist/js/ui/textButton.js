@@ -47,7 +47,7 @@ class TextButton extends UIBlock {
       }
     }
     if (this.event) {
-      emitter.emit(this.event);
+      mt.emitter.emit(this.event);
     }
   }
 }

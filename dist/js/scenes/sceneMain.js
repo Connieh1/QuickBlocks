@@ -15,7 +15,7 @@ class SceneMain extends Phaser.Scene {
     this.clickLock = false;
     this.colorArray = [];
     for (let i = 0; i < 25; i++) {
-      let color = Phaser.Math.Between(0, model.numberOfColors);
+      let color = Phaser.Math.Between(0, mt.model.numberOfColors);
       this.colorArray.push(color);
       this.centerBlock = null;
     }
@@ -77,8 +77,8 @@ class SceneMain extends Phaser.Scene {
       block.removeInteractive();
       this.fall(block);
       this.pickColor();
-      model.score++;
-      this.scoreText.setText(model.score);
+      mt.model.score++;
+      this.scoreText.setText(mt.model.score);
     } else {
       this.doGameOver();
       return;
@@ -95,9 +95,9 @@ class SceneMain extends Phaser.Scene {
     let index;
     if (this.colorArray.length == 0) {
       console.log("Next Level");
-      model.numberOfColors++;
-      if (model.numberOfColors > 7) {
-        model.numberOfColors = 7;
+      mt.model.numberOfColors++;
+      if (mt.model.numberOfColors > 7) {
+        mt.model.numberOfColors = 7;
       }
       this.scene.restart();
       return;

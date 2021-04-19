@@ -1,6 +1,5 @@
 var game;
-var model;
-var emitter;
+var mt;
 
 window.onload = function () {
   var config = {
@@ -10,6 +9,9 @@ window.onload = function () {
     parent: "phaser-game",
     scene: [SceneTitle, SceneMain, SceneOver],
   };
-  model = new Model();
+  mt = {};
+  mt.model = new Model();
   game = new Phaser.Game(config);
+  mt.game = game;
+  mt.constants = new Constants();
 };

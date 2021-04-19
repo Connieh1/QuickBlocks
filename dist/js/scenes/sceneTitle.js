@@ -14,7 +14,7 @@ class SceneTitle extends Phaser.Scene {
   }
 
   create() {
-    emitter = new Phaser.Events.EventEmitter();
+    mt.emitter = new Phaser.Events.EventEmitter();
     this.back = this.add.image(0, 0, "titleBack");
     this.back.setOrigin(0, 0);
     this.back.displayWidth = game.config.width;
@@ -35,13 +35,8 @@ class SceneTitle extends Phaser.Scene {
       textColor: "#000000",
     });
     Align.center(this.btnStart);
-    // this.btnStart = this.add.image(0, 0, "btnStart");
-    // Align.scaleToGameW(this.btnStart, 0.45);
-    // Align.center(this.btnStart);
 
-    // this.btnStart.setInteractive();
-    // this.btnStart.on("pointerdown", this.startGame, this);
-    emitter.on("START_GAME", this.startGame, this);
+    mt.emitter.on("START_GAME", this.startGame, this);
   }
   startGame() {
     this.scene.start("SceneMain");
