@@ -7,7 +7,7 @@ window.onload = function () {
     width: 480,
     height: 640,
     parent: "phaser-game",
-    scene: [SceneTitle, SceneMain, SceneOver],
+    scene: [SceneTitle, SceneInstructions, SceneSettings, SceneMain, SceneOver],
   };
   mt = {};
   mt.model = new Model();

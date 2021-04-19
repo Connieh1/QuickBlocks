@@ -11,14 +11,19 @@ class SceneTitle extends Phaser.Scene {
     this.load.image("red", "images/buttons/red.png");
     this.load.image("orange", "images/buttons/orange.png");
     this.load.image("green", "images/buttons/green.png");
+    this.load.image("sample", "images/sample.png");
   }
 
   create() {
     mt.emitter = new Phaser.Events.EventEmitter();
+    mt.controller = new Controller();
     this.back = this.add.image(0, 0, "titleBack");
     this.back.setOrigin(0, 0);
     this.back.displayWidth = game.config.width;
     this.back.displayHeight = game.config.height;
+
+    this.aGrid = new AlignGrid({ scene: this, rows: 11, cols: 11 });
+    this.aGrid.showNumbers();
 
     this.titleText = this.add.text(0, 0, "QUICK\nBLOCKS", {
       fontSize: game.config.width / 5,
@@ -27,18 +32,38 @@ class SceneTitle extends Phaser.Scene {
 
     this.btnStart = new TextButton({
       scene: this,
-      event: "START_GAME",
-      key: "blue",
+      event: mt.constants.START_GAME,
+      params: this.scene,
+      key: "green",
       text: "Start Game",
-      scale: 0.25,
+      scale: 0.35,
       textScale: 30,
       textColor: "#000000",
     });
     Align.center(this.btnStart);
 
-    mt.emitter.on("START_GAME", this.startGame, this);
-  }
-  startGame() {
-    this.scene.start("SceneMain");
+    this.btnInstr = new TextButton({
+      scene: this,
+      event: mt.constants.SHOW_INSTR,
+      params: this.scene,
+      key: "blue",
+      text: "How to Play",
+      scale: 0.35,
+      textScale: 30,
+      textColor: "#000000",
+    });
+    this.aGrid.placeAtIndex(35, this.btnInstr);
+
+    this.btnSettings = new TextButton({
+      scene: this,
+      event: mt.constants.SHOW_SETTINGS,
+      params: this.scene,
+      key: "orange",
+      text: "Settings",
+      scale: 0.35,
+      textScale: 30,
+      textColor: "#000000",
+    });
+    this.aGrid.placeAtIndex(85, this.btnSettings);
   }
 }

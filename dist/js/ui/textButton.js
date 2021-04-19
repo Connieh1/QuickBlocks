@@ -35,6 +35,9 @@ class TextButton extends UIBlock {
     if (config.event) {
       this.event = config.event;
     }
+    if (config.params) {
+      this.params = config.params;
+    }
   }
 
   pressed() {
@@ -47,7 +50,11 @@ class TextButton extends UIBlock {
       }
     }
     if (this.event) {
-      mt.emitter.emit(this.event);
+      if (this.params) {
+        mt.emitter.emit(this.event, this.params);
+      } else {
+        mt.emitter.emit(this.event);
+      }
     }
   }
 }
