@@ -11,6 +11,7 @@ class SceneMain extends Phaser.Scene {
     this.load.image("btnPlayAgain", "images/btnPlayAgain.png");
   }
   create() {
+    mt.mediaManager.setBackground("background");
     this.blockGroup = this.add.group();
     this.clickLock = false;
     this.colorArray = [];
@@ -78,8 +79,10 @@ class SceneMain extends Phaser.Scene {
       this.fall(block);
       this.pickColor();
       mt.model.score++;
+      mt.mediaManager.playSound("right");
       this.scoreText.setText(mt.model.score);
     } else {
+      mt.mediaManager.playSound("wrong");
       this.doGameOver();
       return;
     }
@@ -95,6 +98,7 @@ class SceneMain extends Phaser.Scene {
     let index;
     if (this.colorArray.length == 0) {
       console.log("Next Level");
+      mt.mediaManager.playSound("levelUp");
       mt.model.numberOfColors++;
       if (mt.model.numberOfColors > 7) {
         mt.model.numberOfColors = 7;
@@ -113,6 +117,7 @@ class SceneMain extends Phaser.Scene {
   }
 
   doGameOver() {
+    mt.mediaManager.stopMusic();
     this.clickLock = true;
     this.timer.stop();
     this.timer.visible = false;

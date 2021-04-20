@@ -6,17 +6,22 @@ class SceneTitle extends Phaser.Scene {
   preload() {
     this.load.image("btnStart", "images/btnStart.png");
     this.load.image("titleBack", "images/titleBack.jpg");
-
     this.load.image("blue", "images/buttons/blue.png");
     this.load.image("red", "images/buttons/red.png");
     this.load.image("orange", "images/buttons/orange.png");
     this.load.image("green", "images/buttons/green.png");
     this.load.image("sample", "images/sample.png");
+    this.load.audio("right", "audio/right.wav");
+    this.load.audio("wrong", "audio/wrong.wav");
+    this.load.audio("background", "audio/background.mp3");
+    this.load.audio("levelUp", "audio/levelUP.wav");
   }
 
   create() {
     mt.emitter = new Phaser.Events.EventEmitter();
     mt.controller = new Controller();
+    mt.mediaManager = new MediaManager({ scene: this });
+
     this.back = this.add.image(0, 0, "titleBack");
     this.back.setOrigin(0, 0);
     this.back.displayWidth = game.config.width;
