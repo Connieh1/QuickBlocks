@@ -28,6 +28,7 @@ class SceneInstructions extends Phaser.Scene {
         backgroundColor: "#ffffff",
       }
     );
+
     this.text1.setOrigin(0.5, 0.5);
     this.aGrid.placeAtIndex(71, this.text1);
 
